@@ -1,4 +1,4 @@
-import { links } from './data';
+import { links, social } from './data';
 import { useReducer, useRef, useState } from 'react';
 import logo from './logo.svg';
 import { FaBars } from 'react-icons/fa';
@@ -6,11 +6,14 @@ import { FaBars } from 'react-icons/fa';
 function NavBar() {
   const [showLinks, setShowLinks] = useState(false);
 
+  const linkRefContainer = useRef(null);
   const linksRef = useRef(null);
   const linkStyle = {
     height: showLinks
       ? `${linksRef.current.getBoundingClientRect().height}px`
-      : '0px',
+      : `0`,
+    // overflow: 'hidden',
+    // transition: '0.5s ease-in-out all',
   };
 
   return (
@@ -26,22 +29,31 @@ function NavBar() {
             {<FaBars />}
           </button>
         </div>
-      </div>
-
-      <div className="link-container" style={linkStyle}>
-        <ul className="links" ref={linksRef}>
-          {links.map((link) => {
-            const { id, url, text } = link;
+        <div className="link-container" style={linkStyle}>
+          <ul className="links" ref={linksRef}>
+            {links.map((link) => {
+              const { id, url, text } = link;
+              return (
+                <li key={id}>
+                  <a
+                    href={url}
+                    onClick={function (e) {
+                      e.preventDefault();
+                    }}
+                  >
+                    {text}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <ul className="socialLink-container">
+          {social.map((socialLink) => {
+            const { id, url, icon } = socialLink;
             return (
-              <li key={id}>
-                <a
-                  href={url}
-                  onClick={function (e) {
-                    e.preventDefault();
-                  }}
-                >
-                  {text}
-                </a>
+              <li className="socialLink-item" key={id}>
+                <a href={url}>{icon}</a>
               </li>
             );
           })}

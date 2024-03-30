@@ -310,6 +310,45 @@ button svg {
   transition: var(--transition);
 }
 
-.show-container {
+/* .show-container {
   height: 10rem;
+} */
+
+.socialLink-container {
+  display: none;
+}
+
+@media screen and (min-width: 500px) {
+  .nav-header {
+    padding: 0;
+  }
+  .nav-toggle {
+    display: none;
+  }
+  .nav-center {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .link-container {
+    height: auto !important;
+  }
+  .links {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .links a {
+    padding: 0;
+  }
+  .links a:hover {
+    padding: 0;
+    background: transparent;
+  }
+  .socialLink-container {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-around;
+  }
 }
